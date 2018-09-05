@@ -102,8 +102,29 @@ playground = {1: 'blank', 2: 'blank', 3: 'Buy a house', 4: 'Buy a car', 5: 'blan
 House = {'1': 'Bungalow', '2': 'House', '3': 'Villa'}
 HouseValues = {'1': int(20000), '2': int(100000), '3': int(10000000)}
 
+# cars and theire values, possible option for later, car increases the steps a player makes by 1:+1, 2:+2; 3:+3,
+Car = {'1': 'VW T1 Bus', '2': 'Saab900Cabrio', '3': 'PorscheBoxster'}
+CarValues = {'1': int(10000), '2': int(50000), '3': int(100000)}
 
-def Salery(PlayerOneIncome, PlayerTwoIncome):
+
+print('Get ready to play!')
+print('Player start is choosen random')
+
+StartGenerator = random.randint(1, 2)
+
+if StartGenerator == 1:
+    print(PlayerOneName + ' , the force tells you to begin')
+elif StartGenerator == 2:
+    print(PlayerTwoName + ' , the force tells you to begin')
+
+# functions for the game
+
+
+def dice(RandomDice):
+    RandomDice = random.randint(1, 10)
+
+
+def salery(PlayerOneIncome, PlayerTwoIncome):
     PlayerOneIncome = PlayerOneWallet + PlayerOneIncome
     PlayerTwoIncome = PlayerTwoWallet + PlayerTwoIncome
 
