@@ -17,6 +17,9 @@ import random
 # define selery by promotion
 # the idea is with an random generator to add an dictionary
 
+
+# Besitz durch ein Dictionary einspeichern
+
 # Starts the game asks for the players, theire colours and some easy checks.
 print('welcome to Game of Live')
 print('this is a ongoing development project')
@@ -41,7 +44,7 @@ if players == '2':
     PlayerOneName = input()
     print('please enter your name for player 2')
     PlayerTwoName = input()
-    True
+
 
 print('Welcome %s and %s to your game' % (PlayerOneName, PlayerTwoName))
 
@@ -96,19 +99,15 @@ PlayerOneCar = '0'
 PlayerTwoCar = '0'
 
 # playground
-playground = {1: 'blank', 2: 'blank', 3: 'Buy a house', 4: 'Buy a car', 5: 'blank', 6: 'blank', 8: 'Promotion, increase your salery by 5000', 9: 'Demotion, you loose 1000 of your salery', 10: 'blank'}
+Playground = {1: 'blank', 2: 'blank', 3: houseoption(), 4: BuyACar(), 5: 'blank', 6: 'blank', 7: BuyACar(), 8: 'Promotion, increase your salery by 5000', 9: 'Demotion, you loose 1000 of your salery', 10: 'blank'}
 
 # possible houses, connect a function to select and add the values
 House = {'1': 'Bungalow', '2': 'House', '3': 'Villa'}
 HouseValues = {'1': int(20000), '2': int(100000), '3': int(10000000)}
 
 # cars and theire values, possible option for later, car increases the steps a player makes by 1:+1, 2:+2; 3:+3,
-Car = {'1': 'VW T1 Bus', '2': 'Saab900Cabrio', '3': 'PorscheBoxster'}
+Car = {'1': 'VW T1 Bus', '2': 'Saab900Cabrio', '3': 'PorscheBoxster', '4': 'Nothing to Buy'}
 CarValues = {'1': int(10000), '2': int(50000), '3': int(100000)}
-
-
-print('Get ready to play!')
-print('Player start is choosen random')
 
 StartGenerator = random.randint(1, 2)
 
@@ -119,25 +118,58 @@ elif StartGenerator == 2:
 
 # functions for the game
 
+while TotalPlayRounds >= (PlayerOneRoundsPlayed + PlayerTwoRoundsPlayed) / 2:
+    if StartGenerator == 1:
+        print(PlayerOneName + ' time to start, the dice gets thrown now')
+        salery(PlayerOneIncome)
+        DiceThrow = dice()
+        print(playground(DiceThrow))
+        PlayerOneRoundsPlayed = PlayerOneRoundsplayed + 1
+        RoundMove = Playground.get(DiceThrow)
+        print(PlayerOneName + ' you have thrown a ' + DiceThrow + ' you are on field ' + Roundmove)
+        print(PlayerOneWallet + 'your available funds')
+
 
 def dice(RandomDice):
     RandomDice = random.randint(1, 10)
+    return RandomDice
 
 
 def salery(PlayerOneIncome, PlayerTwoIncome):
     PlayerOneIncome = PlayerOneWallet + PlayerOneIncome
     PlayerTwoIncome = PlayerTwoWallet + PlayerTwoIncome
+    return PlayerOneIncome
+    return PlayerTwoIncome
 
-# def Buyhouse(House):
+
+def car(BuyACar):
+    print('please enter the "1" for %s and enter the "2" for %s.' % (PlayerOneName, PlayerTwoName))
+    BuyACarPlayerOption = input()
+    if BuyACarPlayerOption == 1:
+        print(PlayerOneName + 'please select a car to buy' + Car)
+        print(Car)
+        CarBuy = input()
+        if not CarBuy.isdecimal():
+            print('please enter a value between 1 and 4')
+            if CarBuy == '1' or '2' or '3':
+                PlayerOneCar = CarValues.get(Carbuy)
+                print('Congratulations you bougt a ' + Car.get(Carbuy))
+                if CarBuy == '4':
+                    True
 
 
 def houseoption(BuyAHouse):
     print('please enter the Player 1 or Player 2')
+    PlayerHouseOptionInput = input()
     if PlayerHouseOptionInput == 1:
         print('you can choose to buy a house now')
-        print('press 1 for a Bungalow, costs 20000 €, press 2 for a House for 100.000 € or a Villa for 1.000.000 € press 3, for nothing press 4.')
+        print('press 1 for a Bungalow, costs 20000 Euro, press 2 for a House for 100.000 Euro or a Villa for 1.000.000 Euro press 3, for nothing press 4.')
         PlayerBuyOption = input()
         while PlayerBuyOption == '4':
             break
-            if PlayerBuyoption == '1':
+            if PlayerBuyoption == '1' or '2' or '3':
                 PlayerOneHouse = PlayerOneHouse + Housevalues.get(PlayerBuyOption)
+
+
+print('Get ready to play!')
+print('Player start is choosen random')
